@@ -81,7 +81,7 @@ class KnownDataset:
         self.url = url
         self.prefix = prefix
 
-        self.dataset_home_path = Path('..') / 'dataset'
+        self.dataset_home_path = Path('dataset')
         self.dataset_home_path.mkdir(parents=True, exist_ok=True)
         self.dataset_home_path = self.dataset_home_path.resolve()
         self.root_path = self.dataset_home_path / self.name
