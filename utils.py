@@ -6,7 +6,6 @@ def preprocess_df(df):
     new_df = df.drop_duplicates(ignore_index=True)
     new_df = new_df.dropna(axis=0)
     new_df = new_df.reset_index(drop=True)
-
     return new_df
 
 
