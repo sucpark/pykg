@@ -18,6 +18,7 @@ if __name__ == '__main__':
 
     if args.dataset == '10000recipe_sample1000.txt':
         save_dir = save_dir / '10000Recipe_sample1000'
+        data_prefix = '10000recipe_1000_'
         data = read_csv(data_dir / args.dataset, sep='\t', names=['head', 'relation', 'tail'])
         data = preprocess_df(data)
         train, valid, test = split_df(df=data, share=0.8, validation=args.validation)
@@ -25,7 +26,7 @@ if __name__ == '__main__':
     if not exists(save_dir):
         makedirs(save_dir, exist_ok=True)
 
-    train.to_csv(save_dir / 'train.txt', sep='\t')
-    test.to_csv(save_dir / 'test.txt', sep='\t')
+    train.to_csv(save_dir / (data_prefix + 'train.txt'), sep='\t', index=False, header=False)
+    test.to_csv(save_dir / (data_prefix + 'test.txt'), sep='\t', index=False, header=False)
     if valid is not None:
-        valid.to_csv(save_dir / 'valid.txt', sep='\t')
+        valid.to_csv(save_dir / (data_prefix + 'valid.txt'), sep='\t', index=False, header=False)

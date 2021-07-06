@@ -396,9 +396,9 @@ class UserDefinedDataset():
         if not self.root_path.exists():
             raise NotImplementedError("%s user defined dataset not found!" % self.root_path)
 
-        train_file = self.root_path / (name + '-train.txt')
-        test_file = self.root_path / (name + '-test.txt')
-        valid_file = self.root_path / (name + '-valid.txt')
+        train_file = self.root_path / (name + '_train.txt')
+        test_file = self.root_path / (name + '_test.txt')
+        valid_file = self.root_path / (name + '_valid.txt')
 
         if not train_file.exists():
             raise NotImplementedError("%s training file not found!" % train_file)
@@ -408,9 +408,9 @@ class UserDefinedDataset():
             raise NotImplementedError("%s validation file not found!" % valid_file)
 
         self.data_paths = {
-            'train': self.root_path / (name + '-train.txt'),
-            'test': self.root_path / (name + '-test.txt'),
-            'valid': self.root_path / (name + '-valid.txt')
+            'train': self.root_path / (name + '_train.txt'),
+            'test': self.root_path / (name + '_test.txt'),
+            'valid': self.root_path / (name + '_valid.txt')
         }
 
         self.cache_triplet_paths = {
