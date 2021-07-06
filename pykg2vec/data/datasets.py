@@ -371,7 +371,7 @@ class NELL_995(KnownDataset):
         KnownDataset.__init__(self, name, url, prefix)
 
 
-class UserDefinedDataset():
+class UserDefinedDataset:
     """The class consists of modules to handle the user defined datasets.
 
       User may define their own datasets to be processed with the
@@ -387,18 +387,17 @@ class UserDefinedDataset():
     """
     _logger = Logger().get_logger(__name__)
 
-    def __init__(self, name, custom_dataset_path):
-        self.name = name
-
+    def __init__(self, custom_dataset_path):
+        self.name = custom_dataset_path.split('/')[-1]
         self.dataset_path = Path(custom_dataset_path).resolve()
         self.root_path = self.dataset_path
 
         if not self.root_path.exists():
             raise NotImplementedError("%s user defined dataset not found!" % self.root_path)
 
-        train_file = self.root_path / (name + '_train.txt')
-        test_file = self.root_path / (name + '_test.txt')
-        valid_file = self.root_path / (name + '_valid.txt')
+        train_file = self.root_path / (self.name + '_train.txt')
+        test_file = self.root_path / (self.name + '_test.txt')
+        valid_file = self.root_path / (self.name + '_valid.txt')
 
         if not train_file.exists():
             raise NotImplementedError("%s training file not found!" % train_file)
@@ -408,9 +407,9 @@ class UserDefinedDataset():
             raise NotImplementedError("%s validation file not found!" % valid_file)
 
         self.data_paths = {
-            'train': self.root_path / (name + '_train.txt'),
-            'test': self.root_path / (name + '_test.txt'),
-            'valid': self.root_path / (name + '_valid.txt')
+            'train': self.root_path / (self.name + '_train.txt'),
+            'test': self.root_path / (self.name + '_test.txt'),
+            'valid': self.root_path / (self.name + '_valid.txt')
         }
 
         self.cache_triplet_paths = {

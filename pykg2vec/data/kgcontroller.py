@@ -23,6 +23,7 @@ from pykg2vec.data.datasets import (
     UserDefinedDataset,
 )
 
+
 class Triple:
     """ The class defines the datastructure of the knowledge graph triples.
 
@@ -40,6 +41,7 @@ class Triple:
            >>> trip1 = Triple(2,3,5)
            >>> trip2 = Triple('Tokyo','isCapitalof','Japan')
     """
+
     def __init__(self, h, r, t):
         self.h = h
         self.r = r
@@ -155,7 +157,7 @@ class KnowledgeGraph:
             # if the dataset does not match with existing one, check if it exists in user's local space.
             # if it still can't find corresponding folder, raise exception in UserDefinedDataset.__init__()
 
-            self.dataset = UserDefinedDataset(dataset, custom_dataset_path)
+            self.dataset = UserDefinedDataset(custom_dataset_path)
         else:
             raise ValueError("Unknown dataset: %s" % dataset)
 
