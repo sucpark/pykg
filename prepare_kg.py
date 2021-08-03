@@ -16,12 +16,11 @@ if __name__ == '__main__':
     data_dir = Path(args.data_dir)
     save_dir = Path(args.save_dir)
 
-    if args.data == '10000recipe_sample1000.txt':
-        data_name = args.data[:-4]
-        save_dir = save_dir / data_name
-        data = read_csv(data_dir / args.data, sep='\t', names=['head', 'relation', 'tail'])
-        data = preprocess_df(data)
-        train, valid, test = split_df(df=data, share=0.8, validation=args.validation)
+    data_name = args.data[:-4]
+    save_dir = save_dir / data_name
+    data = read_csv(data_dir / args.data, sep='\t', names=['head', 'relation', 'tail'])
+    data = preprocess_df(data)
+    train, valid, test = split_df(df=data, share=0.8, validation=args.validation)
 
     if not exists(save_dir):
         makedirs(save_dir, exist_ok=True)
